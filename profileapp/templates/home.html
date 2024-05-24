@@ -17,25 +17,25 @@
 
 
                     
-                    {% for products in products %}
+                    {% for posts in posts %}
                     
                     <div class="col mb-5">
                         <div class="card h-10">
                             <!-- Post image-->
-                            <img class="card-img-top" src="{{products.picture_of_item.url}}" alt="..." />
+                            <img class="card-img-top" src="{{posts.picture_of_item.url}}" alt="..." />
                             <!-- Post details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Post name-->
-                                    <h5 class="fw-bolder">{{products.item_name}}</h5>
+                                    <h5 class="fw-bolder">{{posts.item_name}}</h5>
                                 </div>
-                                IN:{{products.category}}
+                                IN:{{posts.category}}
                             </div>
-                                location:{{products.address}}
+                                location:{{posts.address}}
                             </div>
                             <!-- Post actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'post' posts.id %}">View </a></div>
                             </div>
                         </div>
                     </div>

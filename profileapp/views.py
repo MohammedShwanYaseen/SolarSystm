@@ -8,9 +8,13 @@ from .forms import SignUpForm
 from django import forms
 
 
+def post(request,pk):
+    post = Post.objects.get(id=pk)
+    return render(request,'post.html',{'post':post})
+
 def home(request):
-    products = Post.objects.all()
-    return render(request,'home.html',{'products':products})
+    posts = Post.objects.all()
+    return render(request,'home.html',{'posts':posts})
 
 def about(request):
     return render(request, 'about.html', {})

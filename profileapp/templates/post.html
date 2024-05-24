@@ -1,0 +1,50 @@
+{% extends 'bace.html' %}
+{% block content %}
+
+        <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">PRODUCT</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">missing porduct</p>
+                </div>             
+            </div>
+        </header>
+        <div class="container">
+            <div class="rew">
+                <conter>
+                    <div class="col-8">
+                        <br/><br/>
+                        
+
+
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                              <div class="col-md-4">
+                                <img src="{{ post.picture_of_item.url }}" class="img-fluid rounded-start" alt="...">
+                              </div>
+                              <div class="col-md-8">
+                                <div class="card-body">
+                                  <h2 class="card-title">item name:<br/>{{ post.item_name }}</h2>
+                                  <h2 class="card-title">category:<br/>{{ post.category }}</h2>
+                                  <h5 class="card-text">description:<br/>{{ post.description }}</h5>
+                                  <h5 class="card-text">location:<br/>{{ post.address }}</h5>
+                                  <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                                  <button type="submit" class="btn btn-primary">order</button href="{#}">
+                                  <button type="submit" class="btn btn-primary">message</button href="{#}">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                    </div>
+                <conter>
+            </div>
+        </div>
+
+        <!-- Section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+{% endblock %}
