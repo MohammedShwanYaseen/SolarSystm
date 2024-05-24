@@ -1,0 +1,44 @@
+{% extends 'bace.html' %}
+
+{% block content %}
+
+        <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">register</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">register for user</p>
+                </div>             
+            </div>
+        </header>
+        <div class="container">
+            <div class="rew">
+                <conter>
+                    <div class="col-8">
+                        
+
+                        <form method ='POST' action="{% url 'register' %}"> 
+                            {% csrf_token %}
+
+                            <br/><br/>
+                            <br/><br/>
+
+                            {{ form.as_p }}
+
+                            <button type="submit" class="btn btn-primary">Register
+
+                            </button>
+
+
+
+                    </div>
+                <conter>
+            </div>
+        </div>
+
+        <!-- Section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+{% endblock %}

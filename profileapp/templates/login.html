@@ -1,0 +1,50 @@
+{% extends 'bace.html' %}
+
+{% block content %}
+
+        <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">login</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">Welcome ! Please Log In</p>
+                </div>             
+            </div>
+        </header>
+        <div class="container">
+            <div class="rew">
+                <conter>
+                    <div class="col-6 offset-m-3">
+                        
+
+                        <form method ='POST' action="{% url 'login' %}">
+                            {% csrf_token %}
+
+                            <br/><br/>
+                            <br/><br/>
+                            <div class="mb-4">
+                            
+                              <input type="text" class="form-control" name="username"
+                              placeholder="Enter Your UserName">
+
+                            </div>
+                            <div class="mb-4">
+                              <input type="password" class="form-control" name="password"
+                              placeholder="Enter Your password">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">login</button>
+                        </form>
+                        <br/><br/>
+
+                    </div>
+                <conter>
+            </div>
+        </div>
+
+        <!-- Section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+{% endblock %}
