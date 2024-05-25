@@ -7,6 +7,15 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPassw
 from .forms import SignUpForm,UpdateUserForm,ChangePasswordForm
 from django import forms
 
+def search(request):
+     if request.method == 'POST':
+          searched =request.POST[ 'searched' ]
+          searched = Post.objects.filter(item_name__icontains=searched)
+          return render(request,'search.html',{"searched":searched})
+     
+     else: 
+          return render(request,'search.html',{})
+
 def password(request):
     if request.user.is_authenticated:
           current_user = request.user
