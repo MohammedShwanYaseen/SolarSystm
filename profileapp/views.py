@@ -1,11 +1,66 @@
 from django.shortcuts import render, redirect
-from .models import Post
+from .models import Post,Category
 from django.contrib.auth import authenticate ,login ,logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPasswordForm
-from .forms import SignUpForm
+from .forms import SignUpForm,UpdateUserForm,ChangePasswordForm
 from django import forms
+
+def password(request):
+    if request.user.is_authenticated:
+          current_user = request.user
+          if request.method == 'POST':
+               form = ChangePasswordForm(current_user,request.POST)
+               if form.is_valid():
+                    form.save()
+                    login(request,current_user)
+                    messages.success(request, ("Password change successfully"))
+                    return redirect('login')
+                    
+               else:
+                    for error in list(form.errors.values()):
+                         messages.error(request, error) 
+                         return redirect('password') 
+               
+          else:
+              form = ChangePasswordForm(current_user)
+              return render(request, 'password.html', {"form":form})
+    else:
+         messages.success(request, ("You Must Be Logged In"))
+         
+                  
+
+
+def update_user(request):
+     if request.user.is_authenticated:
+        current_user = User.objects.get(id=request.user.id)
+        user_form = UpdateUserForm(request.POST or None, instance=current_user)
+
+        if user_form.is_valid():
+             user_form.save()
+             login(request,current_user)
+             messages.success(request, ("Info is Updated "))
+             return redirect('home')
+        return render(request, 'update_user.html', {"user_form":user_form})
+     else:
+          messages.success(request, ("You Must Be Logged In "))
+          return redirect('home')
+          	
+
+def category_summary(request):
+	categories = Category.objects.all()
+	return render(request, 'category_summary.html', {"categories":categories})	
+
+def category(request,foo):
+	foo = foo.replace('-', ' ')
+	try:
+		category = Category.objects.get(category_name =foo)
+		posts = Post.objects.filter(category=category)
+		return render(request, 'category.html', {'posts':posts})
+	except:
+		messages.success(request, ("That Category Doesn't Exist..."))
+		return redirect('home')
 
 
 def post(request,pk):

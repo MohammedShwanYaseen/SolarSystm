@@ -5,8 +5,7 @@
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">FIND YOUR THINGS</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">With this hompeage template</p>
+                    <h1 class="display-4 fw-bolder">{{ Category }}</h1>
                 </div>
             </div>
         </header>
@@ -17,21 +16,21 @@
 
 
                     
-                    {% for posts in posts %}
+                    {% for product in product %}
                     
                     <div class="col mb-5">
                         <div class="card h-10">
                             <!-- Post image-->
-                            <img class="card-img-top" src="{{posts.picture_of_item.url}}" alt="..." />
+                            <img class="card-img-top" src="{{product.picture_of_item.url}}" alt="..." />
                             <!-- Post details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Post name-->
-                                    <h5 class="fw-bolder">{{posts.item_name}}</h5>
+                                    <h5 class="fw-bolder">{{product.item_name}}</h5>
                                 </div>
-                                IN:{{posts.category}}
+                                IN:{{product.category}}
                             </div>
-                                location:{{posts.address}}
+                                location:{{product.address}}
                             </div>
                             <!-- Post actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
