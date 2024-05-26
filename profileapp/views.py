@@ -6,6 +6,32 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPasswordForm
 from .forms import SignUpForm,UpdateUserForm,ChangePasswordForm
 from django import forms
+from django.core.mail import send_mail
+
+
+def request_user(request):
+     if request.method =='POST':
+        
+        message_username =request.POST['username']
+        message_itemname =request.POST['item-name']
+        message_email =request.POST['email']
+        message_address =request.POST['address']
+        message =request.POST['message']
+
+        send_mail('message form' + message_username,
+                  message,
+                  message_email,
+                  ['mohammedshwan76@gmail.com'])
+        return render(request,'request.html',{'message_username':message_username})
+
+     else:
+          return render(request,'request.html',{})
+          
+
+    
+       
+     
+
 
 def search(request):
      if request.method == 'POST':

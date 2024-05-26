@@ -16,7 +16,7 @@
 
                         <li><a class="dropdown-item" href="{% url 'category_summary' %}">All Category</a></li>
                         <li><a class="dropdown-item" href="{% url 'Category' 'headphone' %}">headphone</a></li>
-                        <li><a class="dropdown-item" href="{% url 'Category' 'Phone-Iphone' %}">phone</a></li>
+                        <li><a class="dropdown-item" href="{% url 'Category' 'Phone' %}">phone</a></li>
                         <li><a class="dropdown-item" href="{% url 'Category' 'book' %}">book</a></li>
                         <li><a class="dropdown-item" href="{% url 'Category' 'ID' %}">ID</a></li>
                         <li><a class="dropdown-item" href="{% url 'Category' 'notebook' %}">notebook</a></li>
@@ -29,6 +29,7 @@
         {% if user.is_authenticated %}
             <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">logout</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'update_user' %}">profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'request_user' %}">Request</a></li>
         {% else %}
             <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">login</a></li>  
             <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">register</a></li>

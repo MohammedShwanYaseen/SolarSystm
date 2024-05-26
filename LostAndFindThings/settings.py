@@ -119,3 +119,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# email system
+EMAIL_LOCALHOST  = 'localhost:'
+EMAIL_POST = '1025'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_TLS = False
+#EMAIL_USE_SSL = False
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
