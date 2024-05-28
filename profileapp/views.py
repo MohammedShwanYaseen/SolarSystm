@@ -1,13 +1,29 @@
 from django.shortcuts import render, redirect
-from .models import Post,Category
+from .models import Post,Category,Profile
 from django.contrib.auth import authenticate ,login ,logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPasswordForm
-from .forms import SignUpForm,UpdateUserForm,ChangePasswordForm
+from .forms import SignUpForm,UpdateUserForm,ChangePasswordForm,UserInfoForm
 from django import forms
 from django.core.mail import send_mail
 
+
+def pro(request):
+     if request.user.is_authenticated:
+        current_user = Profile.objects.get(user__id=request.user.id)
+        form = UserInfoForm(request.POST or None, instance=current_user)
+
+        if form.is_valid():
+             form.save()
+             login(request,current_user)
+             messages.success(request, ("Info is Updated "))
+             return redirect('home')
+        return render(request, 'pro.html', {"form":form})
+     else:
+          messages.success(request, ("You Must Be Logged In "))
+          return redirect('home')
+     
 
 def request_user(request):
      if request.method =='POST':
@@ -27,11 +43,6 @@ def request_user(request):
      else:
           return render(request,'request.html',{})
           
-
-    
-       
-     
-
 
 def search(request):
      if request.method == 'POST':
@@ -143,7 +154,7 @@ def register_user(request):
             User = authenticate(username =username, password =password)
             login(request,User)
             messages.success(request ,('Thank you for register to user website'))
-            return redirect('home')
+            return redirect('pro')
         else:
             messages.success(request ,('There was problem registering please try again'))
             return redirect('register')

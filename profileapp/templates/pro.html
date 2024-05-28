@@ -6,7 +6,7 @@
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">update profile</h1>
+                    <h1 class="display-4 fw-bolder">profile informaion</h1>
                     <p class="lead fw-normal text-white-50 mb-0">update user profile</p>
                 </div>             
             </div>
@@ -17,20 +17,16 @@
                     <div class="col-8">
                         
 
-                        <form method="POST" action="{% url 'update_user' %}">
+                        <form method="POST" action="{% url 'pro' %}">
                             {% csrf_token %}
                             
-                            {{ user_form.as_p }}
+                            {{ form.as_p }}
                             
                             <button type="submit" class="btn btn-primary">
-                              Update Profile
+                              change
                             </button>
-                        </form>
-                        <br/><br/>
-                        <a href="{% url 'pro' %}" class="btn btn-primary">Update user information</a>
-                        <br/><br/>
-                        <a href="{% url 'password' %}" class="btn btn-primary">Update Password</a>
-                        <br/>
+
+
 
 
 

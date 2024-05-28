@@ -20,8 +20,13 @@
                         <form method ='POST' action="{% url 'request_user' %}">
                             {% csrf_token %}
                             
+                            {% if message_username %}
+                           <center>
+                            <h2> Thank you {{ message_username }} FOR SENDING REQUEST <h2>
+                           <center>
+                            
 
-
+                            {% else %}
                             <br/><br/>
                             <br/><br/>
                             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3262.49686373646!2d33.91138648200074!3d35.144227316180164!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14dfc9dfa338df17%3A0xc6f9439216322098!2zU2FrYXJ5YSwg2YHYp9mF2KfYrNmI2LPYqtinIDk5NDUw!5e0!3m2!1sar!2s!4v1716742044760!5m2!1sar!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -41,6 +46,8 @@
                               <br/><input type="text" class="form-control" name="address"
                               placeholder="Enter Your  address">
                               <br/>
+                              <label for="profile-pic">Upload your profile picture:</label>
+                              <input type="file" id="profile-pic" name="profile-pic"><br><br>
 
 
                             </div>
@@ -57,10 +64,11 @@
                 <conter>
             </div>
         </div>
-
+        
+        {% endif %}
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-
+       
 {% endblock %}
