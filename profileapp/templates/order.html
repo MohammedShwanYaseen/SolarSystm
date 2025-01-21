@@ -6,8 +6,8 @@
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Request</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">Welcome ! Please send request</p>
+                    <h1 class="display-4 fw-bolder">Order</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">Welcome ! Please send proof of ownership of the item</p>
                 </div>             
             </div>
         </header>
@@ -17,7 +17,7 @@
                     <div class="col-6 offset-m-3">
                         
 
-                        <form method ='POST' action="{% url 'request_user' %}">
+                        <form method ='POST' action="{% url 'order_user' %}">
                             {% csrf_token %}
                             
                             {% if message_username %}
@@ -29,15 +29,15 @@
                             {% else %}
                             <br/><br/>
                             <br/><br/>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3262.49686373646!2d33.91138648200074!3d35.144227316180164!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14dfc9dfa338df17%3A0xc6f9439216322098!2zU2FrYXJ5YSwg2YHYp9mF2KfYrNmI2LPYqtinIDk5NDUw!5e0!3m2!1sar!2s!4v1716742044760!5m2!1sar!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            <div class="mb-4">
+
                                 
                               <br/><br/>
+                              
                               <input type="text" class="form-control" name="username"
-                              placeholder="Enter Your UserName">
+                              placeholder="Enter UserName">
                               <br/>
                               <input type="text" class="form-control" name="item-name"
-                              placeholder="Enter Your the name of the item">
+                              placeholder="Enter the name of the item">
 
                               <br/><input type="text" class="form-control" name="email"
                               placeholder="Enter Your email">
@@ -46,8 +46,8 @@
                               <br/><input type="text" class="form-control" name="address"
                               placeholder="Enter Your  address">
                               <br/>
-                              <label for="pictuer">send item picture:</label>
-                              <input type="file" id="pictuer" name="pictuer"><br><br>
+                              <label for="profile-pic">send pictuer to proof ownership:</label>
+                              <input type="file" id="profile-pic" name="profile-pic"><br><br>
 
 
                             </div>
@@ -56,7 +56,7 @@
                               
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Send Request</button>
+                            <button type="submit" class="btn btn-primary">Send order</button>
                         </form>
                         <br/><br/>
 

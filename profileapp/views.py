@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Post,Category,Profile
+from .models import Post,Category,Profile,order
 from django.contrib.auth import authenticate ,login ,logout
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -7,6 +7,34 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPassw
 from .forms import SignUpForm,UpdateUserForm,ChangePasswordForm,UserInfoForm
 from django import forms
 from django.core.mail import send_mail
+from LostAndFindThings.settings import EMAIL_HOST_USER
+
+
+def order_user(request):
+    if request.user.is_authenticated:
+        current_user = Profile.objects.get(user__id=request.user.id)
+        form = UserInfoForm(request.POST or None, instance=current_user)
+
+        if form.is_valid():
+             form.save()
+    
+    if request.method =='POST':
+        
+         message_username =request.POST['username']
+         message_itemname =request.POST['item-name']
+         message_email =request.POST['email']
+         message_address =request.POST['address']
+         message =request.POST['message']
+
+         send_mail('message form' + message_username,
+                  message,
+                  message_email,
+                  ['mohammedshwan76@gmail.com'])
+         return render(request,'order.html',{'message_username':message_username})
+
+    else:
+          return render(request,'order.html',{})
+     
 
 
 def pro(request):
@@ -32,12 +60,14 @@ def request_user(request):
         message_itemname =request.POST['item-name']
         message_email =request.POST['email']
         message_address =request.POST['address']
+        message_pictuer =request.POST['pictuer']
         message =request.POST['message']
 
-        send_mail('message form' + message_username,
-                  message,
+        send_mail('message form ' + message_username ,
+                  message + message_pictuer + message_address +message_itemname ,
                   message_email,
                   ['mohammedshwan76@gmail.com'])
+        
         return render(request,'request.html',{'message_username':message_username})
 
      else:

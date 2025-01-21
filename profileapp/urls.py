@@ -15,6 +15,7 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('request_user/', views.request_user, name='request_user'),
     path('pro/', views.pro, name='pro'),
+    path('order_user/', views.order_user, name='order_user'),
 
  
 

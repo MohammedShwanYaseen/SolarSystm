@@ -1,9 +1,13 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPasswordForm
-from  .models import Profile
+from  .models import Profile ,order
 from django import forms
 
 #from .models import Profile
+
+class user_order(forms.ModelForm):
+	prove = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Phone'}), required=False)
+	description = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Phone'}), required=False)
 
 
 class UserInfoForm(forms.ModelForm):
