@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPassw
 from .forms import SignUpForm,UpdateUserForm,ChangePasswordForm,UserInfoForm
 from django import forms
 from django.core.mail import send_mail
-from LostAndFindThings.settings import EMAIL_HOST_USER
+from SolarPanelSystem.settings import EMAIL_HOST_USER
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from .models import User, SolarPanel, Battery, SensorData, Report

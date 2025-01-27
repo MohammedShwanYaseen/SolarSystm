@@ -56,7 +56,7 @@ class Migration(migrations.Migration):
                 ('address', models.CharField(max_length=250)),
                 ('description', models.TextField(max_length=250)),
                 ('date', models.DateTimeField(auto_now=True)),
-                ('category', models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='profileapp.category')),
+                ('category', models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='solar_system.category')),
             ],
         ),
         migrations.CreateModel(
@@ -67,7 +67,7 @@ class Migration(migrations.Migration):
                 ('quantity', models.CharField(max_length=250)),
                 ('status', models.BooleanField(default=False)),
                 ('phone_number', models.IntegerField(unique=True)),
-                ('item', models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='profileapp.post')),
+                ('item', models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='solar_system.post')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
