@@ -1,0 +1,24 @@
+{% extends 'bace.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Welcome, {{ user.name }}!</h1>
+        <p>Role: {{ user.role }}</p>
+    </header>
+    <main>
+        <h2>System Statistics</h2>
+        <p>Total Users: {{ total_users }}</p>
+    </main>
+</body>
+</html>
+{% endblock %}

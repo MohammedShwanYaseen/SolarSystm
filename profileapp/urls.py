@@ -17,7 +17,6 @@ urlpatterns = [
     path('pro/', views.pro, name='pro'),
     path('order_user/', views.order_user, name='order_user'),
 
- 
-
-    ]
-    
+    path('user_dashboard/', views.get_user_dashboard, name='user_dashboard'),
+    path('user/<int:user_id>/generate-report/', views.generate_report, name='generate_report'),
+]

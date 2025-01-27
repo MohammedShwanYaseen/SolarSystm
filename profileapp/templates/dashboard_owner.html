@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Welcome, {{ user.name }}!</h1>
+        <p>Role: {{ user.role }}</p>
+    </header>
+    <main>
+        <h2>Your Solar Panels</h2>
+        <ul>
+            {% for panel in panels %}
+                <li>Panel ID: {{ panel.panel_id }} | Location: {{ panel.location }} | Capacity: {{ panel.capacity }} kW</li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+</html>

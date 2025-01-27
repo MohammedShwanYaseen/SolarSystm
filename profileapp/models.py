@@ -73,3 +73,62 @@ class order(models.Model):
 
 
 
+
+
+class User(models.Model):
+    ROLES = [
+        ('Owner', 'Household Owner'),
+        ('Installer', 'Panel System Installer'),
+        ('Admin', 'System Admin'),
+    ]
+
+    name = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    role = models.CharField(max_length=20, choices=ROLES)
+
+    def __str__(self):
+        return self.name
+
+
+class SolarPanel(models.Model):
+    panel_id = models.AutoField(primary_key=True)
+    location = models.CharField(max_length=100)
+    capacity = models.FloatField()
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="panels")
+
+    def __str__(self):
+        return f"Panel {self.panel_id} - {self.location}"
+
+
+class Battery(models.Model):
+    battery_id = models.AutoField(primary_key=True)
+    capacity = models.FloatField()
+    charge_level = models.FloatField(default=0.0)
+    panel = models.OneToOneField(SolarPanel, on_delete=models.CASCADE, related_name="battery")
+
+    def __str__(self):
+        return f"Battery {self.battery_id}"
+
+
+class SensorData(models.Model):
+    panel = models.ForeignKey(SolarPanel, on_delete=models.CASCADE, related_name="sensor_data")
+    timestamp = models.DateTimeField(auto_now_add=True)
+    power_generated = models.FloatField()
+    energy_consumed = models.FloatField()
+
+    def __str__(self):
+        return f"Data from Panel {self.panel.panel_id} at {self.timestamp}"
+
+
+class Report(models.Model):
+    report_id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="reports")
+    timestamp = models.DateTimeField(auto_now_add=True)
+    summary = models.TextField()
+
+    def __str__(self):
+        return f"Report {self.report_id} for {self.user.name}"
+
+
+
+

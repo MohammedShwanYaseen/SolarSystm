@@ -8,33 +8,9 @@ from .forms import SignUpForm,UpdateUserForm,ChangePasswordForm,UserInfoForm
 from django import forms
 from django.core.mail import send_mail
 from LostAndFindThings.settings import EMAIL_HOST_USER
-
-
-def order_user(request):
-    if request.user.is_authenticated:
-        current_user = Profile.objects.get(user__id=request.user.id)
-        form = UserInfoForm(request.POST or None, instance=current_user)
-
-        if form.is_valid():
-             form.save()
-    
-    if request.method =='POST':
-        
-         message_username =request.POST['username']
-         message_itemname =request.POST['item-name']
-         message_email =request.POST['email']
-         message_address =request.POST['address']
-         message =request.POST['message']
-
-         send_mail('message form' + message_username,
-                  message,
-                  message_email,
-                  ['mohammedshwan76@gmail.com'])
-         return render(request,'order.html',{'message_username':message_username})
-
-    else:
-          return render(request,'order.html',{})
-     
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+from .models import User, SolarPanel, Battery, SensorData, Report
 
 
 def pro(request):
@@ -124,25 +100,6 @@ def update_user(request):
           return redirect('home')
           	
 
-def category_summary(request):
-	categories = Category.objects.all()
-	return render(request, 'category_summary.html', {"categories":categories})	
-
-def category(request,foo):
-	foo = foo.replace('-', ' ')
-	try:
-		category = Category.objects.get(category_name =foo)
-		posts = Post.objects.filter(category=category)
-		return render(request, 'category.html', {'posts':posts})
-	except:
-		messages.success(request, ("That Category Doesn't Exist..."))
-		return redirect('home')
-
-
-def post(request,pk):
-    post = Post.objects.get(id=pk)
-    return render(request,'post.html',{'post':post})
-
 def home(request):
     posts = Post.objects.all()
     return render(request,'home.html',{'posts':posts})
@@ -192,5 +149,38 @@ def register_user(request):
 
     else:    
         return render(request , 'register.html',{'form':form})
+    
+
+
+def get_user_dashboard(user_id):
+    user_id = request.GET.get('id') 
+    user = User.objects.get(id=user_id)
+    user = get_object_or_404(User, id=user_id)
+    if user.role == 'Owner':
+        panels = user.panels.all()
+        data = [{"panel_id": panel.panel_id, "location": panel.location, "capacity": panel.capacity} for panel in panels]
+        return JsonResponse({"user": user.name, "role": user.role, "panels": data})
+    elif user.role == 'Installer':
+        all_panels = SolarPanel.objects.all()
+        return JsonResponse({"user": user.name, "role": user.role, "panels_count": all_panels.count()})
+    elif user.role == 'Admin':
+        total_users = User.objects.count()
+        return JsonResponse({"user": user.name, "role": user.role, "total_users": total_users})
+    return JsonResponse({"error": "Invalid role"})
+
+
+def generate_report(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    if user.role == 'Owner':
+        report_content = f"Energy report for {user.name}."
+    elif user.role == 'Installer':
+        report_content = f"System status overview for Installer {user.name}."
+    elif user.role == 'Admin':
+        report_content = f"Admin {user.name} has managed the system."
+    else:
+        return JsonResponse({"error": "Invalid role"})
+
+    report = Report.objects.create(user=user, summary=report_content)
+    return JsonResponse({"report_id": report.report_id, "summary": report.summary})
 
 
