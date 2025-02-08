@@ -41,7 +41,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'LostAndFindThings.urls'
+ROOT_URLCONF = 'solar_system.urls'
 
 TEMPLATES = [
     {
@@ -59,7 +59,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'LostAndFindThings.wsgi.application'
+WSGI_APPLICATION = 'solar_system.wsgi.application'
 
 
 # Database
