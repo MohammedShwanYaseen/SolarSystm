@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPasswordForm
-from  .models import Profile ,order
+from  .models import Profile
 from django import forms
 
 #from .models import Profile

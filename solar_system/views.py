@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Post,Category,Profile,order
+from .models import Profile
 from django.contrib.auth import authenticate ,login ,logout
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPassw
 from .forms import SignUpForm,UpdateUserForm,ChangePasswordForm,UserInfoForm
 from django import forms
 from django.core.mail import send_mail
-from SolarPanelSystem.settings import EMAIL_HOST_USER
+from solar.settings import EMAIL_HOST_USER
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from .models import User, SolarPanel, Battery, SensorData, Report
